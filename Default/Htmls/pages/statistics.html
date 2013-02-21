@@ -1,0 +1,66 @@
+<div class="box_title">{REALMS}</div>
+<div class="box_content">
+    Персонажей {PLAYERS}<br>
+    Гильдий {GUILDS}<br>
+</div>
+<script>
+    $(function () {
+        $(document).ready(function () {
+            Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function(color) {
+                return {
+                    radialGradient: {
+                        cx: 0.5, 
+                        cy: 0.3, 
+                        r: 0.7
+                    },
+                    stops: [
+                        [0, color],
+                        [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+                    ]
+                };
+            });
+            Core.Circle('container','Пол', [['Женщин',{WOMEN}],['Мужчин',{MEN}]],220);
+            Core.Circle('container1','Фракция', [['За Альянс',{ALIANCE}],['За Орду',{HORGE}]],220);
+            Core.Circle('container2','Онлайн', [['В игре',{INGAME}],['Не в игре',{BIGAME}]],220);
+            Core.Circle('container3','Гильдии', [['В гильдии',{INGUILD}],['Не в гильдии',{BIGUILD}]],220);
+            Core.Circle('container4','Рассы', [
+                {name:'{RACENAME1}',y:{RACE1},color:'{RACECOLOR1}'},
+                {name:'{RACENAME2}',y:{RACE2},color:'{RACECOLOR2}'},
+                {name:'{RACENAME3}',y:{RACE3},color:'{RACECOLOR3}'},
+                {name:'{RACENAME4}',y:{RACE4},color:'{RACECOLOR4}'},
+                {name:'{RACENAME5}',y:{RACE5},color:'{RACECOLOR5}'},
+                {name:'{RACENAME6}',y:{RACE6},color:'{RACECOLOR6}'},
+                {name:'{RACENAME7}',y:{RACE7},color:'{RACECOLOR7}'},
+                {name:'{RACENAME8}',y:{RACE8},color:'{RACECOLOR8}'},
+                {name:'{RACENAME9}',y:{RACE9},color:'{RACECOLOR9}'},
+                {name:'{RACENAME10}',y:{RACE10},color:'{RACECOLOR10}'},
+                {name:'{RACENAME11}',y:{RACE11},color:'{RACECOLOR11}'},
+                {name:'{RACENAME22}',y:{RACE22},color:'{RACECOLOR22}'},
+                {name:'{RACENAME25}',y:{RACE25},color:'{RACECOLOR25}'},
+                {name:'{RACENAME26}',y:{RACE26},color:'{RACECOLOR26}'}
+                
+            ],520);
+            Core.Circle('container5','Классы', [
+                {name:'{CLASSNAME1}',y:{CLASS1},color:'{CLASSCOLOR1}'},
+                {name:'{CLASSNAME2}',y:{CLASS2},color:'{CLASSCOLOR2}'},
+                {name:'{CLASSNAME3}',y:{CLASS3},color:'{CLASSCOLOR3}'},
+                {name:'{CLASSNAME4}',y:{CLASS4},color:'{CLASSCOLOR4}'},
+                {name:'{CLASSNAME5}',y:{CLASS5},color:'{CLASSCOLOR5}'},
+                {name:'{CLASSNAME6}',y:{CLASS6},color:'{CLASSCOLOR6}'},
+                {name:'{CLASSNAME7}',y:{CLASS7},color:'{CLASSCOLOR7}'},
+                {name:'{CLASSNAME8}',y:{CLASS8},color:'{CLASSCOLOR8}'},
+                {name:'{CLASSNAME9}',y:{CLASS9},color:'{CLASSCOLOR9}'},
+                {name:'{CLASSNAME10}',y:{CLASS10},color:'{CLASSCOLOR10}'},
+                {name:'{CLASSNAME11}',y:{CLASS11},color:'{CLASSCOLOR11}'}
+                
+            ],520);
+        });
+    
+    });
+</script>
+<div id="container" style="width: 320px; height: 320px;float: left;"></div>
+<div id="container1" style="width: 320px; height: 320px;float: right;"></div>
+<div id="container2" style="width: 320px; height: 320px;float: left;"></div>
+<div id="container3" style="width: 320px; height: 320px;float: right;"></div>
+<div id="container4" style="width: 655px; height: 655px;float: left;"></div>
+<div id="container5" style="width: 655px; height: 655px;float: left;"></div>

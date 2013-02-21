@@ -1,0 +1,74 @@
+<div class="slider">
+    <div id="slideshow" class="ui-slideshow">
+        <div class="slideshow"></div>
+        <div class="paging"></div>
+
+        <div class="caption" style="display: block;"></div>
+
+        <div class="preview"></div>
+        <div class="mask"></div>
+    </div>
+    <script type="text/javascript">
+        //<![CDATA[
+        $(function() {
+            Slideshow.initialize('#slideshow', [
+                {
+                    image: "http://bnetcmseu-a.akamaihd.net/cms/carousel_header/L3BGEYT94NOY1359365224409.jpg",
+                    desc: "Обновление 5.2 «Властелин Грома»",
+                    title: "Разрабатывается",
+                    url: "http://eu.battle.net/wow/ru/game/patch-notes/under-dev",
+                    id: "7197570"
+                },
+                {
+                    image: "http://bnetcmseu-a.akamaihd.net/cms/carousel_header/2EA0U4NLMCQS1358350178760.jpg",
+                    desc: "",
+                    title: "",
+                    url: "http://eu.battle.net/sc2/ru/blog/6512880/",
+                    id: "7161191"
+                },
+                {
+                    image: "http://bnetcmseu-a.akamaihd.net/cms/carousel_header/XMKHPVE680T71357134742173.jpg",
+                    desc: "Теперь мы стали еще ближе!",
+                    title: "World of Warcraft в «ВКонтакте» ",
+                    url: "http://vk.com/worldofwarcraft",
+                    id: "6952363"
+                },
+                {
+                    image: "http://bnetcmseu-a.akamaihd.net/cms/carousel_header/1AIVP36H0LVB1308039309968.jpg",
+                    desc: "Конвертация валют",
+                    title: "Обновление 5.2",
+                    url: "http://eu.battle.net/wow/ru/blog/7189123",
+                    id: "7198277"
+                },
+                {
+                    image: "http://bnetcmseu-a.akamaihd.net/cms/carousel_header/PTNUKRF2O8YU1358327099258.jpg",
+                    desc: "Узнайте, какие именно изменения произойдут ",
+                    title: "Изменение PvP-экипировки в обновлении 5.2 ",
+                    url: "http://eu.battle.net/wow/ru/blog/6994181",
+                    id: "7001465"
+                },
+                {
+                    image: "http://bnetcmseu-a.akamaihd.net/cms/carousel_header/CH3EMJYLTAL71358330305208.jpg",
+                    desc: "",
+                    title: "",
+                    url: "http://eu.battle.net/wow/ru/blog/7065831/",
+                    id: "7066288"
+                }
+            ]);
+
+        });
+        //]]>
+    </script>
+</div>
+[EDIT]
+<div class="right edit" onclick="Core.Show('#add')">Добавить Новость</div>
+<div class="box_content" id="add" style="display: none;">
+    <div class="box_title">Добавление</div>
+        <input type="text" name="title" id="title" placeholder="Название">
+    <textarea name="message" id="message" class="mestext"></textarea>
+    <input type="button" value="Добавить" onclick="Core.POST({title:$.trim($('#title').val()),message:$.trim($('#message').val()),send:'add'},'/Новости/','nstatus')">
+    <div id="nstatus"></div>
+</div>
+[/EDIT]
+{NEWS}
+{PAGING}

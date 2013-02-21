@@ -1,0 +1,15 @@
+<div class="box_title">{TITLE}</div>
+<div class="box_content">
+    {MESSAGE}
+    [EDIT]
+    <div class="right delete" title="Удалить" onclick="Core.POST({id:{ID},send:'delete'},'/Новости/','nstatus{ID}')"></div>
+    <div class="right edit" onclick="Core.Show('#edit{ID}')">Редактировать</div>
+    <div class="box_content" id="edit{ID}" style="display: none;">
+        <div class="box_title">Редактирование</div>
+        <input type="text" name="title" id="title{ID}" value="{TITLE}">
+        <textarea name="message" id="message{ID}" class="mestext">{MESSAGE}</textarea>
+        <input type="button" value="Отправить" onclick="Core.POST({title:$.trim($('#title{ID}').val()),message:$.trim($('#message{ID}').val()),id:{ID},send:'edit'},'/Новости/','nstatus{ID}')">
+        <div id="nstatus{ID}"></div>
+    </div>
+    [/EDIT]
+</div>

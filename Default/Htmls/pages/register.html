@@ -1,0 +1,20 @@
+<div class="game" id="hide">
+    <div class="block">
+        <form method="post" id="form2" >
+            <input type="text" name="send" value="game" style="display: none;">
+            <input type="password" name="gamepassword" placeholder="Игровой Пароль" autofocus required><br>
+            Сервер:<br>
+            <div style="text-align: left;padding: 0 0 0 60px;">[SERVER]<input type="radio" name="realm" value="{TITLE}">{TITLE}<br>[/SERVER]</div>
+            <input type="button" value="Зарегистрироваться" onclick="Core.POST($('#form2').serialize(),'/Игра/','status2')">
+            <div id="status2"></div>
+        </form>
+    </div>
+</div>
+<form method="post" id="form">
+    <input type="text" name="send" value="reg" style="display: none;">
+    <input type="text" name="username" placeholder="Логин" autofocus><br>
+    <input type="email" name="email" placeholder="Адрес E-Mail"><br>
+    <input type="password" name="password" placeholder="Пароль"><br>
+    <input type="button" value="Зарегистрироваться" onclick="Core.POST($('#form').serialize(),'/Регистрация/','status')">
+</form>
+<div id="status"></div>

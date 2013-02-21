@@ -1,0 +1,35 @@
+[NOLOGIN]<div class="box_title">Авторизация</div>
+<div class="box_content">
+    <div class="left" style="margin-top: 10px">Логин</div>
+    <div class="right"><input type="text" id="username"/></div>
+    <div class="clear"></div>
+    <div class="left" style="margin-top: 10px">Пароль</div>
+    <div class="right"><input type="password" id="password"/></div>
+    <div class="clear"></div>
+    <div id="login"></div>
+    <div class="right">
+        <input type="button" value="Войти" onclick="Core.POST({username:$.trim($('#username').val()),password:$.trim($('#password').val()),send:'login'},'/Аккаунт/','login')"/>
+    </div>
+    <div class="clear"></div>
+</div>[/NOLOGIN]
+
+[LOGIN]<div class="box_title">{NAME}</div>
+<div class="box_content">
+    Группа: {GROUP}
+    <div class="right" style="margin-top: 20px"><input type="button" value="Создать аккаунт" onclick="$('#hide').show()"></div>
+    <div id="off"></div>
+    <input type="button" value="Выход" onclick="Core.POST({send:'off'},'/Выход/','off')">
+</div>
+<div class="game" id="hide">
+    <div class="block">
+        <div class="close" onclick="$('#hide').hide()"></div>
+        <form method="post" id="form2" >
+            <input type="text" name="send" value="game" style="display: none;">
+            <input type="password" name="gamepassword" placeholder="Игровой Пароль" autofocus required><br>
+            Сервер:<br>
+            <div style="text-align: left;padding: 0 0 0 60px;">[SERVER]<input type="radio" name="realm" value="{TITLE}">{TITLE}<br>[/SERVER]</div>
+            <input type="button" value="Зарегистрироваться" onclick="Core.POST($('#form2').serialize(),'/Игра/','status2')">
+            <div id="status2"></div>
+        </form>
+    </div>
+</div>[/LOGIN]
