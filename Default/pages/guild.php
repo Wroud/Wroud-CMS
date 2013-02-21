@@ -18,7 +18,7 @@ class Guild {
         $page = (isset($args[3])) ? $args[3] : 0;
         $page = (is_numeric($page)) ? $page : 0;
         $realms = TPL_INDEX::Realms($args, 'Гильдии');
-        $guilds = SCL_DATABASE::select(SQL_GET_GUILDS, $realms[1], PLPAGE * $page, PLPAGE * ($page + 1));
+        $guilds = SCL_DATABASE::select(SQL_GET_GUILDS, $realms[1], PLPAGE * $page, PLPAGE);
         $guildc = SCL_DATABASE::selectCell(SQL_GET_GOUNT_GUILDS, $realms[1]);
         $leaders = array();
         $guids = array();

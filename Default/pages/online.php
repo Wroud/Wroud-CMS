@@ -10,7 +10,7 @@ function Init_tpl($patch, $args) {
     $title = "";
     $rea = TPL_INDEX::Realms($args, 'Онлайн');
 
-    $players = SCL_DATABASE::select(SQL_GET_ONLINE, $rea[1], $rea[1], $rea[1], PLPAGE * $page, PLPAGE * ($page + 1));
+    $players = SCL_DATABASE::select(SQL_GET_ONLINE, $rea[1], $rea[1], $rea[1], PLPAGE * $page, PLPAGE);
     $ponline = SCL_DATABASE::selectRow(SQL_GET_STATUS, $rea[1]);
     $online = new TC('pages/online');
     $temp = $online->get(array('player' => 'PLAYER'));

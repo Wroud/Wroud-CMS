@@ -3,7 +3,7 @@
 function Init_tpl($patch, $args) {
     $page = (isset($args[2])) ? $args[2] : 0;
     $page = (is_numeric($page)) ? $page : 0;
-    $news = SCL_DATABASE::select(SQL_GET_NEWS, TOPAGE * $page, TOPAGE * ($page + 1));
+    $news = SCL_DATABASE::select(SQL_GET_NEWS, TOPAGE * $page, TOPAGE);
     $count = SCL_DATABASE::selectCell(SQL_GET_NEWSCO);
     $HTML = "";
     if (is_array($news))
