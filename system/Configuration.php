@@ -1,6 +1,6 @@
 <?php
 
-define('VERSION', 0.02);
+define('VERSION', 0.03);
 define('LOGGING', true);
 define('LOGLEVEL', 1);
 
@@ -14,7 +14,7 @@ define('BB_E', "utf8");
 define('BD_S', "WCMS");
 
 //Вывод новостей
-define('TOPAGE', 10);//Новостей на страницу
+define('TOPAGE', 20);//Новостей на страницу
 define('PLPAGE', 20);//Игроков на страницу
 
 ?>

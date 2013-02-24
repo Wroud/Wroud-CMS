@@ -7,7 +7,8 @@
     src: url('/media/font/morpheus.ttf');
 }
 body{
-    background-color:#e4e4e4;
+    background:url('/media/images/body/bg_part1.jpg') 50% 0 no-repeat;
+    background-color:#dde1e1;
     font-size:12px;
     font-family:"Morpheus";
     color:#8A8A8A;
@@ -43,10 +44,15 @@ input.cool[type="submit"]:active, input.cool[type="button"]:active {background-c
 .right{float: right;}
 .left{float: left;}
 .clear{clear: both; display: block;}
-.wrapper{min-height: 100%;margin-bottom:-60px;position:relative;}
+.wrapper{
+    margin-bottom:-60px;
+    position:relative;
+    min-height: 100%;
+}
 .container {width:1000px;}
 .container .content {text-align: left;}
-.push{height:20px;}
+.push{height:20px;
+    /*background: url('/media/images/body/bg_part2.jpg') no-repeat center bottom;*/}
 .clearfooter {height: 45px;clear:both;}
 .footer {
     color: #636363;
@@ -97,7 +103,7 @@ input.cool[type="submit"]:active, input.cool[type="button"]:active {background-c
 }
 .body{
     width: 100%;
-    min-height: 100px;
+    min-height: 800px;
     background-color:#eeeeee;
     -moz-box-shadow: 0 0 2px 2px #d5d5d5;
     -webkit-box-shadow: 0 0 2px 2px #d5d5d5;
@@ -287,24 +293,63 @@ input.cool[type="submit"]:active, input.cool[type="button"]:active {background-c
     cursor: pointer;
 }
 .page{
-    background-color: #eeeeee;
-    -moz-box-shadow: 0 0 2px 2px #d5d5d5;
-    -webkit-box-shadow: 0 0 2px 2px #d5d5d5;
-    box-shadow: 0 0 2px 2px #d5d5d5;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 3px 3px 3px 3px;
+    background: #FAFAFA;
+    float: left;
 }
-.page b{
-    margin-right: 5px;
-    color: rgb(0, 214, 255);
+.page span{
+    background:rgba(95, 172, 255, 0.24);
+    color: #557296;
+    text-decoration: none;
+    padding: 0px 5px;
+    line-height: 20px;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    float: left;
+    border-bottom: 1px solid rgb(0, 173, 255);
 }
-.page a{
-    margin-right: 5px;
-    color: rgb(0, 173, 255);
+.page a:link, .page a:visited {
+    color: #557296;
+    text-decoration: none;
+    padding: 0px 5px;
+    line-height: 20px;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    float: left;
     border-bottom: 1px solid rgb(0, 173, 255);
 }
 .page a:hover{
-    color: rgb(108, 154, 252);
-    border-bottom: 1px solid rgb(108, 154, 252);
+    background: #ECEFF6;
 }
+.page a.first,span.first {
+    border-radius: 3px 0px 0px 3px;
+}
+.page a.last,span.last {
+    border-right: none; border-radius: 0px 3px 3px 0px;
+}
+
+/* Pagination */
+/*.Pager {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 3px 3px 3px 3px;
+    background: #FAFAFA;
+    float: left;
+}
+.Pager li {display:inline; color: #777;}
+.Pager a:link, .Pager a:visited {
+    color: #557296;
+    text-decoration: none;
+    padding: 0px 14px;
+    line-height: 26px;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    float: left;
+    border-bottom: 1px solid rgb(0, 173, 255);
+}
+.Pager a:hover {background: #ECEFF6;}
+.Pager .selected a {background:#ECEFF6;}
+.Pager .hidden a {color:#999;}
+.Pager .hidden a:hover {color: #999; background: #FAFAFA;}
+.Pager li.last a {border-right: none; border-radius: 0px 3px 3px 0px;}
+.Pager li.first a {border-radius: 3px 0px 0px 3px;}*/
 
 .tooltip               { color: #FFFFFF;}
 .tooltip .tiptopl    { background: url('../img/tooltip/ttip-tl.png') no-repeat; width: 7px; height: 7px;}

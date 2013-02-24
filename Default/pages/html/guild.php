@@ -1,15 +1,19 @@
 <?php
 
-function Init_tpl($patch, $args) {
-    if (!is_array(TPL_INDEX::$realms))
-        return '';
-    switch ($patch) {
-        case'Гильдии':
-            return Guild::GList($args);
-            break;
-        case'Гильдия':
-            break;
+class Page {
+
+    function Init() {
+        if (!is_array(TPL_INDEX::$realms))
+            return '';
+        switch (TC::$patch) {
+            case'Гильдии':
+                return Guild::GList(TC::$args);
+                break;
+            case'Гильдия':
+                break;
+        }
     }
+
 }
 
 class Guild {

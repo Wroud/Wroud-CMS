@@ -28,4 +28,4 @@ CREATE TABLE `cms_settings` (
 -- ----------------------------
 -- Records of cms_settings
 -- ----------------------------
-INSERT INTO `cms_settings` VALUES ('World of Warcraft', '0.01', 'Default', 'ru_RU');
+INSERT INTO `cms_settings` VALUES ('World of Warcraft', '0.03', 'Default', 'ru_RU');

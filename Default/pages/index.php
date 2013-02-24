@@ -1,6 +1,6 @@
 <?php
 
-function Init_tpl_i($index, $content, $patch) {
+function Init_tpl_i($index, $content) {
     $login = new TC('blocks/login');
     $block[] = null;
     if (TPL_INDEX::$USER != null) {

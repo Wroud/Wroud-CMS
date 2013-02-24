@@ -13,6 +13,7 @@ define('Temp_DIR', DIR . 'Temp/');
 define('Core_DIR', Sy_DIR . 'core/');
 define('Mo_DIR', Sy_DIR . 'modules/');
 define('Sq_DIR', Sy_DIR . 'sql/');
+define('Me_DIR', Sy_DIR . 'media/');
 
 define('Cl_DIR', Core_DIR . 'classes/');
 

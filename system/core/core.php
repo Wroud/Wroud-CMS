@@ -45,7 +45,7 @@ function L_Cl($className) {
                 $FileName = Mo_DIR . strtolower($type[1]) . '.php';
                 break;
             case 'TPL':
-                $FileName = We_DIR . "Controllers/" . strtolower($type[1]) . '.php';
+                $FileName = We_DIR . "Functions/" . strtolower($type[1]) . '.php';
                 break;
             default :
                 $true = false;

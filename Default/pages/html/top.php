@@ -5,19 +5,21 @@
  * and open the template in the editor.
  */
 
-function Init_tpl($patch, $args) {
+class Page {
+
+    function Init() {
     if (!is_array(TPL_INDEX::$realms))
         return '';
-    $page = (isset($args[4])) ? $args[4] : 0;
+    $page = (isset(TC::$args[4])) ? TC::$args[4] : 0;
     $page = (is_numeric($page)) ? $page : 0;
     $page = ($page < 0) ? 0 : $page;
-    $top = (isset($args[3])) ? $args[3] : '';
+    $top = (isset(TC::$args[3])) ? TC::$args[3] : '';
     $PLHL = "";
     $TOHL = "";
     $column = "";
     $tname = "";
     $url = "";
-    $realms = TPL_INDEX::Realms($args, 'Топ');
+    $realms = TPL_INDEX::Realms(TC::$args, 'Топ');
     $tops = array(
         'Богачи' => array('Богачи', 'money', 'Золото')
         , 'Убийства' => array('Убийства', 'totalkills', 'Убийства')
@@ -75,6 +77,7 @@ function Init_tpl($patch, $args) {
     ));
     $top->set_preg(array('PLAYER' => $PLHL));
     return $top->render();
+}
 }
 
 class TPL_Top {

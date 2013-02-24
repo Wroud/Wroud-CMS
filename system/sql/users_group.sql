@@ -28,4 +28,4 @@ CREATE TABLE `users_group` (
 -- Records of users_group
 -- ----------------------------
 INSERT INTO `users_group` VALUES ('1', 'Администратор');
-INSERT INTO `users_group` VALUES ('5', 'Пользователь');
+INSERT INTO `users_group` VALUES ('5', 'Обычный Смертный');

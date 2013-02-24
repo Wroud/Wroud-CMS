@@ -4,28 +4,65 @@ class TC {
 
     private $content = NULL;
     public static $buffer = array();
+    public static $patch = "";
+    public static $args = array();
+    public static $POST = array();
 
     static function Init() {
-        include (We_DIR . "Controllers/DEFINE.php");
+        include (We_DIR . "Functions/DEFINE.php");
         TPL_INDEX::Init();
-        if ($_SERVER['REQUEST_URI'] == "/")
-            TPL_TPL::Init("home", null);
-        else {
-            $args = explode("/", urldecode($_SERVER['REQUEST_URI']));
-            switch ($args[1]) {
-                case 'debug':
-                    Core::$Debug->Get_Logs(100);
-                    break;
-                case 'xml':
-                    TPL_XML::Init($args[1], $args);
-                    break;
-                default :
-                    if ($_POST != NULL)
-                        TPL_POST::Init($args[1], $_POST);
-                    else
-                        TPL_TPL::Init($args[1], $args);
-                    break;
-            }
+        if ($_SERVER['REQUEST_URI'] == "/") {
+            self::$patch = "home";
+            self::$POST = $_POST;
+        } else {
+            self::$args = explode("/", urldecode($_SERVER['REQUEST_URI']));
+            self::$patch = self::$args[1];
+            self::$POST = $_POST;
+        }
+        switch (strtolower(self::$patch)) {
+            case 'debug':
+                Core::$Debug->Get_Logs(100);
+                break;
+            case 'system_media':
+                unset(self::$args[0]);
+                unset(self::$args[1]);
+                if (file_exists(Me_DIR . implode('/', self::$args))) {
+                    $file_handle = fopen(Me_DIR . implode('/', self::$args), "r");
+                    $sorce = "";
+                    while (!feof($file_handle)) {
+                        $sorce.= fgets($file_handle);
+                    }
+                    fclose($file_handle);
+                    echo $sorce;
+                }else
+                    header("HTTP/1.0 404 Not Found");
+                break;
+            default:
+                $page = SCL_DATABASE::selectRow(SQL_GET_PAGE, self::$patch);
+                if ($page == null || !file_exists(We_DIR . "pages/" . $page['type'] . "/" . $page['name'] . ".php")) {
+                    $content = new TC('404');
+                    echo $content->render();
+                } else {
+                    include (We_DIR . "pages/" . $page['type'] . "/" . $page['name'] . ".php");
+                    $content = null;
+                    switch ($page['type']) {
+                        case 'xml':
+                            echo Xml::Init();
+                            break;
+                        case 'post':
+                            if (self::$POST != NULL)
+                                echo Post::Init();
+                            break;
+                        case 'html':
+                            $content = Page::Init();
+                            include(We_DIR . "pages/index.php");
+                            $index = new TC('index');
+                            $index = Init_tpl_i($index, $content);
+                            echo $index->render();
+                            break;
+                    }
+                }
+                break;
         }
     }
 

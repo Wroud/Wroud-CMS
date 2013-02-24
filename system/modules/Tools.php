@@ -16,38 +16,41 @@ class SMO_Tools {
         if ($newsnum < $tup)
             return "";
         $pagging = '<div style="margin:5px -3px 0 0;"><div class="page">';
-        $max = round(($newsnum + $tup) / $tup);
+        $max = floor($newsnum / $tup);
 
-        for ($i = 1; $i < 3; $i++) {
-            $a = $i * $tup;
-            if ($page == ($i - 1))
-                $pagging .= '<b><span>' . ($a - $tup + 1) . '-' . $a . '</span></b>';
+        if ($newsnum % $tup > 0)
+            $max++;
+        $mimax = $max - 1;
+
+        if ($page == 0)
+            $pagging .= '<span class="first">1-' . $tup . '</span>';
+        else
+            $pagging .='<a href="' . $url . '0" class="first" rel="nofollow">1-' . $tup . '</a>';
+
+        if ($max > 1) {
+            if ($page >= $mimax - 6)
+                $start = ($mimax - 6 < 2) ? 2 : $mimax - 6;
             else
-                $pagging .='<a href="' . $url . ($i - 1) . '" rel="nofollow"><span>' . ($a - $tup + 1) . '-' . $a . '</span></a>';
-        }
-        if ($max > 2) {
-
-            $start = ($page - 2 < 3) ? 3 : $page - 2;
-            if ($start > 3)
-                $pagging .= '<span class="swch"><span>...</span></span>';
-            for ($i = $start; $i < $page + 5; $i++) {
-                if ($i > $max - 3)
+                $start = ($page - 2 < 2) ? 2 : $page - 2;
+            $last = 1;
+            if ($start > 2 && 2 < $mimax)
+                $pagging .= '<span class="swch">...</span>';
+            for ($i = $start; $i < $start + 7; $i++) {
+                if ($i == $max)
                     break;
                 $a = $i * $tup;
                 if ($page == ($i - 1))
-                    $pagging .= '<b><span>' . ($a - $tup + 1) . '-' . $a . '</span></b>';
+                    $pagging .= '<span>' . ($a - $tup + 1) . '-' . $a . '</span>';
                 else
-                    $pagging .='<a href="' . $url . ($i - 1) . '" rel="nofollow"><span>' . ($a - $tup + 1) . '-' . $a . '</span></a>';
+                    $pagging .='<a href="' . $url . ($i - 1) . '" rel="nofollow">' . ($a - $tup + 1) . '-' . $a . '</a>';
+                $last = $i;
             }
-            if ($start + 7 < $max - 2)
-                $pagging .= '<span class="swch"><span>...</span></span>';
-            for ($i = $max - 2; $i < $max; $i++) {
-                $a = $i * $tup;
-                if ($page == ($i - 1))
-                    $pagging .= '<b><span>' . ($a - $tup + 1) . '-' . $a . '</span></b>';
-                else
-                    $pagging .='<a href="' . $url . ($i - 1) . '" rel="nofollow"><span>' . ($a - $tup + 1) . '-' . $a . '</span></a>';
-            }
+            if ($last < $mimax)
+                $pagging .= '<span class="swch">...</span>';
+            if ($page == $mimax)
+                $pagging .= '<span class="last">' . (($mimax * $tup) + 1) . '-' . $newsnum . '</span>';
+            else
+                $pagging .='<a href="' . $url . $mimax . '" rel="nofollow" class="last">' . (($mimax * $tup) + 1) . '-' . $newsnum . '</a>';
         }
         $pagging .= '</div></div>';
         return $pagging;
