@@ -9,7 +9,7 @@ define('SQL_GET_NEWS', "SELECT `id`,`title`,`message` FROM `BD_S`.`news` ORDER B
 define('SQL_GET_GUILDS', "SELECT `guildid`,`name`,`leaderguid`,`bankMoney` FROM `%s`.`guild` LIMIT %s,%s");
 define('SQL_GET_LEADER_GUILDS', "SELECT `guid`,`name` FROM `%s`.`characters` WHERE `guid` IN (%s)");
 define('SQL_GET_MEMBERS_GUILD', "SELECT `guildid`,count(`guid`)as `con` FROM `%s`.`guild_member` WHERE `guildid` IN (%s) GROUP BY `guildid`");
-define('SQL_GET_GOUNT_GUILDS', "SELECT count(*) FROM `%s`.`guild`");
+define('SQL_GET_COUNT_GUILDS', "SELECT count(*) FROM `%s`.`guild`");
 define('SQL_SET_NEWS', "UPDATE `BD_S`.`news` SET `title`='%s',`message`='%s' WHERE `id`='%s'");
 define('SQL_ADD_NEWS', "INSERT INTO `BD_S`.`news` (`title`,`message`,`time`)VALUES('%s','%s','%s')");
 define('SQL_DEL_NEWS', "DELETE FROM `BD_S`.`news` WHERE `id`='%s'");

@@ -7,7 +7,7 @@
 
 class Page {
 
-    function Init() {
+    static function Init() {
         if (!is_array(TPL_INDEX::$realms))
             return '';
         $rea = TPL_INDEX::Realms(TC::$args, 'Статистика');

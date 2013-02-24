@@ -3,6 +3,7 @@
 define('VERSION', 0.03);
 define('LOGGING', true);
 define('LOGLEVEL', 1);
+define('LOGTOPAGE', 100);
 
 //DATABASE НАСТРОЙКИ
 define('DB_H', "127.0.0.1");

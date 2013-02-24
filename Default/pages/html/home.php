@@ -2,7 +2,7 @@
 
 class Page {
 
-    function Init() {
+    static function Init() {
         $page = (isset(TC::$args[2])) ? TC::$args[2] : 0;
         $page = (is_numeric($page)) ? $page : 0;
         $news = SCL_DATABASE::select(SQL_GET_NEWS, TOPAGE * TC::$patch, TOPAGE);

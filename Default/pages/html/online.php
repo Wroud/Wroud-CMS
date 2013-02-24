@@ -2,14 +2,12 @@
 
 class Page {
 
-    function Init() {
+    static function Init() {
         if (!is_array(TPL_INDEX::$realms))
             return '';
         $page = (isset(TC::$args[3])) ? TC::$args[3] : 0;
         $page = (is_numeric($page)) ? $page : 0;
         $PLHL = "";
-        $bd = "";
-        $title = "";
         $rea = TPL_INDEX::Realms(TC::$args, 'Онлайн');
 
         $players = SCL_DATABASE::select(SQL_GET_ONLINE, $rea[1], $rea[1], $rea[1], PLPAGE * $page, PLPAGE);
