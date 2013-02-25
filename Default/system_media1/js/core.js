@@ -1,7 +1,6 @@
 var Core = {};
 var Cookie = {};
 var Show = {};
-var Opacity = {};
 Core.POST = function(data,url,status){
     $("#"+status).html("<img src='/system_media/images/ajax-loader.gif'></img>");
     $.ajax({
@@ -11,7 +10,6 @@ Core.POST = function(data,url,status){
         error: function(req, text, error) {
             $("#"+status).addClass('warning');
             $("#"+status).html('Произошла непредвиденная ошибка повторите позже!');
-            Core.Opacity(status,1);
         },
         success: function (data) {
             if(data[0])
@@ -19,30 +17,19 @@ Core.POST = function(data,url,status){
             else
                 $("#"+status).addClass('fail');
             $("#"+status).html(data[1]);
-            Core.Opacity(status,0.03);
         },
         dataType: 'json'
     });
 },
 Core.XmlLoad = function(block,url){
-    $("#"+block).html("<center><img src='/system_media/images/ajax-loader.gif'></img></center>");
+    $("#"+block).html("<img src='/system_media/images/ajax-loader.gif'></img>");
     $.ajax({
         url: url,
         dataType: "html",
         success: function(xml) {
             $("#"+block).html(xml);
-            Core.Opacity(block,0.006);
         }
     });
-},
-Core.Opacity = function(block,speed){
-    $("#"+block).css("opacity",0);
-    Opacity[block] = setInterval(function(){
-        if($("#"+block).css("opacity")>=1)
-            clearInterval(Opacity[block]);
-        else
-            $("#"+block).css("opacity",parseFloat($("#"+block).css("opacity"))+speed);
-    },1);
 },
 Core.Show = function(hu){
     if(Show[hu]){

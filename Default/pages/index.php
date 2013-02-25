@@ -17,7 +17,6 @@ function Init_tpl_i($index, $content) {
     $index->set(array(
         '{TITLE}' => Core::$settings['name']
         , '{LOGIN}' => $login->render()
-        , '{STATUS}' => IN_Index::Status()
         , '{CONTENT}' => $content
         , '{LOAD}' => round(microtime(true) - Core::$microtime, 4)
     ));
@@ -26,22 +25,6 @@ function Init_tpl_i($index, $content) {
 }
 
 class IN_Index {
-
-    static function Status() {
-        $HTML = "";
-        if (is_array(TPL_INDEX::$realms))
-            foreach (TPL_INDEX::$realms as $realm) {
-                $online = SCL_DATABASE::selectRow(SQL_GET_STATUS, $realm['characters']);
-                $status = new TC('blocks/status');
-                $status->set(array(
-                    '{TITLE}' => $realm['title']
-                    , '{ONLINE}' => $online['num'] . ' / ' . $realm['limit']
-                    , '{ROUND}' => round($online['num'] / (($online['num'] > $realm['limit']) ? $online['num'] : $realm['limit']), 2) * 100
-                ));
-                $HTML.=$status->render();
-            }
-        return $HTML;
-    }
 
     static function Login($temp) {
         $HTML = "";

@@ -165,6 +165,14 @@ input.cool[type="submit"]:active, input.cool[type="button"]:active {background-c
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
 }
+.body .right_body .box_content .off{
+    width: 100%;
+    background-color: rgb(211, 65, 65);
+    height: 10px;
+    border-radius:5px;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+}
 .body .right_body .box_content .bar .filled{
     float: left;
     width: 3%;

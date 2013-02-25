@@ -24,7 +24,10 @@ class TC {
             $content = null;
             switch ($page['type']) {
                 case 'xml':
+                    header("Content-type: text/xml");
+                    echo '<document>';
                     echo Xml::Init();
+                    echo '</document>';
                     break;
                 case 'post':
                     if (self::$POST != NULL)

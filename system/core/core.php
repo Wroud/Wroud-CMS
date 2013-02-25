@@ -23,20 +23,6 @@ class Core {
             case 'debug':
                 self::$Debug->Get_Logs(LOGTOPAGE);
                 break;
-            case 'system_media':
-                unset($args[0]);
-                unset($args[1]);
-                if (file_exists(Me_DIR . implode('/', $args))) {
-                    $file_handle = fopen(Me_DIR . implode('/', $args), "r");
-                    $sorce = "";
-                    while (!feof($file_handle)) {
-                        $sorce.= fgets($file_handle);
-                    }
-                    fclose($file_handle);
-                    echo $sorce;
-                }else
-                    header("HTTP/1.0 404 Not Found");
-                break;
             default :
                 include (Core_DIR . "Template_Controller.php");
                 spl_autoload_register('L_Cl');

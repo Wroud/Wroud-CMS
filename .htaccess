@@ -6,4 +6,9 @@ Options -Indexes
 
 # Rewrite Engine
 RewriteEngine On
+
+RewriteCond		%{REQUEST_URI} ^/system_media(.*)$ [NC]
+RewriteRule		^system_media/(.*)$ system/media/$1 [L,NC]
+RewriteCond		%{REQUEST_URI} !^/system_media(.*)$ [NC]
+RewriteCond		%{REQUEST_URI} !^/system/media(.*)$ [NC]
 RewriteRule		(.*) Default/$1 [L]

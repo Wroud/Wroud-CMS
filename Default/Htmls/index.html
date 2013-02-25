@@ -34,8 +34,9 @@
                         <div class="right_body">
                             {LOGIN}
                             <div class="box_title">Состояние Мира</div>
-                            <div class="box_content">
-                                {STATUS}
+                            <div class="box_content" id="worlds">
+                                <center><img src='/system_media/images/ajax-loader.gif'></img></center>
+                                <script>Core.XmlLoad('worlds', '/worlds')</script>
                             </div>
                             <div class="box_title">Голосование</div>
                             <div class="box_content">
