@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50529
 File Encoding         : 65001
 
-Date: 2013-02-25 15:55:07
+Date: 2013-02-28 17:17:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -34,11 +34,15 @@ INSERT INTO `pages` VALUES ('worlds', 'worlds', 'xml', '1');
 INSERT INTO `pages` VALUES ('Аккаунт', 'user', 'post', '1');
 INSERT INTO `pages` VALUES ('Выход', 'user', 'post', '1');
 INSERT INTO `pages` VALUES ('Гильдии', 'guild', 'html', '1');
+INSERT INTO `pages` VALUES ('Добавить мир', 'addworld', 'post_controll', '1');
 INSERT INTO `pages` VALUES ('Игра', 'user', 'post', '1');
+INSERT INTO `pages` VALUES ('Миры', 'addworld', 'controll', '1');
 INSERT INTO `pages` VALUES ('Новости', 'home', 'post', '1');
 INSERT INTO `pages` VALUES ('Онлайн', 'online', 'html', '1');
 INSERT INTO `pages` VALUES ('Регистрация', 'register', 'html', '1');
 INSERT INTO `pages` VALUES ('Регистрацияp', 'register', 'post', '1');
+INSERT INTO `pages` VALUES ('Редактировать мир', 'addworld', 'post_controll', '1');
 INSERT INTO `pages` VALUES ('Статистика', 'statistics', 'html', '1');
 INSERT INTO `pages` VALUES ('Страница', 'home', 'html', '1');
 INSERT INTO `pages` VALUES ('Топ', 'top', 'html', '1');
+INSERT INTO `pages` VALUES ('Удалить мир', 'addworld', 'post_controll', '1');
