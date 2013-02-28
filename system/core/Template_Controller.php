@@ -29,10 +29,12 @@ class TC {
                     echo Xml::Init();
                     echo '</document>';
                     break;
+                case 'post_controll':
                 case 'post':
                     if (self::$POST != NULL)
                         echo Post::Init();
                     break;
+                case 'controll':
                 case 'html':
                     $content = Page::Init();
                     include(We_DIR . "pages/index.php");

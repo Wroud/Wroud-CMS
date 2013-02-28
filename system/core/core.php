@@ -34,8 +34,8 @@ class Core {
                     exit("<font style='font-family: Verdana, Arial, Helvetica, sans-serif;font-size: 12px;'>Поддерживаемая версия БД: <strong style='color:green;'>" . VERSION . "</strong><br/> Установленная версия БД: <strong style='color:red;'>" . self::$settings['version'] . "<br/>Обновите БД!   <a href='#' style='color:#0085FF;text-decoration:none'>Обновить</a></font>");
 
                 define('LOCALE', self::$settings['locale']);
-                define('We_DIR', DIR . self::$settings['template'] . '/');
-                define('Te_DIR', We_DIR . 'Htmls/');
+                define('We_DIR', DIR . self::$settings['template'] . S);
+                define('Te_DIR', We_DIR . 'Htmls' . S);
 
                 $cms_Lo = (isset($_COOKIE['LOCALE']) ? $_COOKIE['LOCALE'] : LOCALE);
                 setcookie('LOCALE', $cms_Lo, strtotime('NEXT YEAR'), '/');
@@ -60,7 +60,7 @@ function L_Cl($className) {
                 $FileName = Mo_DIR . strtolower($type[1]) . '.php';
                 break;
             case 'TPL':
-                $FileName = We_DIR . "Functions/" . strtolower($type[1]) . '.php';
+                $FileName = We_DIR . "Functions" . S . strtolower($type[1]) . '.php';
                 break;
             default :
                 $true = false;

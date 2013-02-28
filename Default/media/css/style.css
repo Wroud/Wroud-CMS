@@ -215,14 +215,34 @@ input.cool[type="submit"]:active, input.cool[type="button"]:active {background-c
 .delete,
 .close{
     display: block;
-    background: url('/system_media/images/icons/buttons.png') -32px -14px no-repeat;
+    background: url('/system_media/images/icons/buttons.png') -32px -17px no-repeat;
     cursor: pointer;
     width: 16px;
     height: 16px;
 }
 .delete:hover,
 .close:hover{
-    background: url('/system_media/images/icons/buttons.png') -32px 3px no-repeat;
+    background: url('/system_media/images/icons/buttons.png') -32px 0px no-repeat;
+}
+.okay{
+    display: block;
+    background: url('/system_media/images/icons/buttons.png') -16px -17px no-repeat;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}
+.okay:hover{
+    background: url('/system_media/images/icons/buttons.png') -16px 0px no-repeat;
+}
+.editb{
+    display: block;
+    background: url('/system_media/images/icons/buttons.png') 0 -17px no-repeat;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}
+.editb:hover{
+    background: url('/system_media/images/icons/buttons.png') 0 0px no-repeat;
 }
 
 
@@ -253,6 +273,7 @@ input.cool[type="submit"]:active, input.cool[type="button"]:active {background-c
 /*Онлайн*/
 .player td{
     padding: 5px;
+    margin: 0 0 0 0;
     border-bottom: 1px solid rgb(226, 226, 226);
     color: rgb(70, 70, 70);
     font-family: "Morpheus";
@@ -287,6 +308,16 @@ input.cool[type="submit"]:active, input.cool[type="button"]:active {background-c
 .player .money{
     width: 150px;
     text-align: center;
+}
+/*Миры*/
+.worlds td{
+    margin: 0 0 0 0;
+    border-bottom: 1px solid rgb(226, 226, 226);
+    color: rgb(70, 70, 70);
+    font-family: "Morpheus";
+}
+.worlds td input{
+    padding: 0px 5px 0px 5px;
 }
 .online{
     width: 100%;

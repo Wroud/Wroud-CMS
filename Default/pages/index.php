@@ -8,6 +8,10 @@ function Init_tpl_i($index, $content) {
         $temp = $temp['server'];
         $login->set_preg(array('SERVER' => '{SERVER}'));
         $login->set(IN_Index::Login($temp));
+        if (TPL_INDEX::$USER != null && TPL_INDEX::$USER['group'] == 1)
+            $login->set(array('[GROUP5]' => '', '[/GROUP5]' => ''));
+        else
+            $login->set_preg(array('GROUP5' => ''));
         $block = array('NOLOGIN', 'LOGIN');
     } else
         $block = array('LOGIN', 'NOLOGIN');

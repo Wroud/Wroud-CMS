@@ -15,7 +15,10 @@
 
 [LOGIN]<div class="box_title">{NAME}</div>
 <div class="box_content">
-    Группа: {GROUP}
+    Группа: {GROUP}<br>
+    [GROUP5]
+    <a href="/Миры/">Управление мирами</a>
+    [/GROUP5]
     <div class="right" style="margin-top: 20px"><input type="button" value="Создать аккаунт" onclick="$('#hide').show()"></div>
     <div id="off"></div>
     <input type="button" value="Выход" onclick="Core.POST({send:'off'},'/Выход/','off')">

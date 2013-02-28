@@ -2,20 +2,21 @@
 
 session_start();
 error_reporting(E_ALL);
-define('DIR', dirname(dirname(__FILE__)) . '\\');
+define('S', DIRECTORY_SEPARATOR);
+define('DIR', dirname(dirname(__FILE__)) . S);
 if (!defined('DIR') || !DIR)
     die('<strong>Крит. Ошибка</strong>: не удалось определить базовый каталог!');
-	
-define('DEBUG', DIR . '_DEBUGS_/');
-define('Sy_DIR', DIR . 'system/');
-define('Temp_DIR', DIR . 'Temp/');
 
-define('Core_DIR', Sy_DIR . 'core/');
-define('Mo_DIR', Sy_DIR . 'modules/');
-define('Sq_DIR', Sy_DIR . 'sql/');
-define('Me_DIR', Sy_DIR . 'media/');
+define('DEBUG', DIR . '_DEBUGS_' . S);
+define('Sy_DIR', DIR . 'system' . S);
+define('Temp_DIR', DIR . 'Temp' . S);
 
-define('Cl_DIR', Core_DIR . 'classes/');
+define('Core_DIR', Sy_DIR . 'core' . S);
+define('Mo_DIR', Sy_DIR . 'modules' . S);
+define('Sq_DIR', Sy_DIR . 'sql' . S);
+define('Me_DIR', Sy_DIR . 'media' . S);
+
+define('Cl_DIR', Core_DIR . 'classes' . S);
 
 include (Core_DIR . "core.php");
 ?>

@@ -15,7 +15,7 @@ class Page {
         $online = new TC('pages/online');
         $temp = $online->get(array('player' => 'PLAYER'));
         $temp = $temp['player'];
-        if (is_array($players))
+        if ($players != null)
             foreach ($players as $player) {
                 $status = new TC($temp, true);
                 $guild = ($player['leaderguid'] == $player['guid']) ? "Лидер " . $player['guild'] : $player['guild'];

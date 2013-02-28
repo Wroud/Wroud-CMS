@@ -1,8 +1,7 @@
 var Core = {};
 var Cookie = {};
-var Show = {};
 var Opacity = {};
-Core.POST = function(data,url,status){
+Core.POST = function(data,url,status,htm){
     $("#"+status).html("<img src='/system_media/images/ajax-loader.gif'></img>");
     $.ajax({
         type: 'POST',
@@ -14,11 +13,18 @@ Core.POST = function(data,url,status){
             Core.Opacity(status,1);
         },
         success: function (data) {
+            $("#"+status).removeClass('success');
+            $("#"+status).removeClass('fail');
+            $("#"+status).removeClass('warning');
             if(data[0])
                 $("#"+status).addClass('success');
             else
                 $("#"+status).addClass('fail');
-            $("#"+status).html(data[1]);
+            if(data[0]=='html'){
+                $("#"+htm).replaceWith(data[1]);
+                $("#"+status).html(data[2]);
+            }else
+                $("#"+status).html(data[1]);
             Core.Opacity(status,0.03);
         },
         dataType: 'json'
@@ -45,12 +51,10 @@ Core.Opacity = function(block,speed){
     },1);
 },
 Core.Show = function(hu){
-    if(Show[hu]){
-        $(hu).hide(100);
-        Show[hu]=false;
-    }else{
+    if($(hu).css('display')=='none'){
         $(hu).show(100);
-        Show[hu]=true;
+    }else{
+        $(hu).hide(100);
     }
 },
 Core.Circle = function(cont,title,data,radi){

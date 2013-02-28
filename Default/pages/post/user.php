@@ -12,7 +12,7 @@
  */
 class Post {
 
-    function Init() {
+    static function Init() {
         switch (TC::$POST['send']) {
             case'game':
                 if (TPL_INDEX::$USER == null)
