@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50529
 File Encoding         : 65001
 
-Date: 2013-02-28 17:17:08
+Date: 2013-03-05 17:59:50
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,7 +31,7 @@ CREATE TABLE `pages` (
 -- ----------------------------
 INSERT INTO `pages` VALUES ('home', 'home', 'html', '1');
 INSERT INTO `pages` VALUES ('worlds', 'worlds', 'xml', '1');
-INSERT INTO `pages` VALUES ('Аккаунт', 'user', 'post', '1');
+INSERT INTO `pages` VALUES ('Аккаунт', 'user', 'html', '1');
 INSERT INTO `pages` VALUES ('Выход', 'user', 'post', '1');
 INSERT INTO `pages` VALUES ('Гильдии', 'guild', 'html', '1');
 INSERT INTO `pages` VALUES ('Добавить мир', 'addworld', 'post_controll', '1');

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50529
 File Encoding         : 65001
 
-Date: 2013-02-25 15:55:16
+Date: 2013-03-05 17:59:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -28,11 +28,15 @@ CREATE TABLE `realms` (
   `world` varchar(255) NOT NULL,
   `ip` varchar(255) NOT NULL,
   `port` int(11) NOT NULL,
+  `bhost` varchar(255) NOT NULL DEFAULT '127.0.0.1',
+  `bport` int(11) NOT NULL DEFAULT '3306',
+  `buser` varchar(255) NOT NULL DEFAULT 'root',
+  `bpass` varchar(255) NOT NULL DEFAULT 'root',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of realms
 -- ----------------------------
-INSERT INTO `realms` VALUES ('1', 'Дракономор', 'PvE сервер', '15', 'auth', 'chars', 'world', '127.0.0.1', '80');
-INSERT INTO `realms` VALUES ('2', 'Лич', 'PvP сервер', '10', 'auth', 'characters', 'world', '127.0.0.1', '8085');
+INSERT INTO `realms` VALUES ('1', 'Дракономор', 'PvE сервер', '15', 'auth', 'chars', 'world', '127.0.0.1', '80', '127.0.0.1', '3306', 'root', 'mangos');
+INSERT INTO `realms` VALUES ('2', 'Лич', 'PvP сервер', '10', 'auth', 'characters', 'world', '127.0.0.1', '8085', '127.0.0.1', '3306', 'root', 'mangos');
