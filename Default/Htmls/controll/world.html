@@ -1,10 +1,9 @@
 <tr class="player" id ="world{ID}">
     <td>{NAME}</td> 
     <td class="mini">{MAX}</td> 
-    <td>{IP}</td> 
-    <td class="mini">{PORT}</td> 
+    <td>{IP}:{PORT}</td> 
     <td>{AUTH}</td>
     <td>{CHAR}</td>
     <td>{WORLD}</td> 
-    <td><div class="right delete" title="Удалить" onclick="Core.POST({id:{ID},send:'delete'},'/Удалить мир/','worldstatus','world{ID}')"></div><div class="right editb" title="Редактировать" onclick="Core.Show('#edit{ID}');Core.Show('#world{ID}')"></div></td> 
+    <td><div class="right delete" title="Удалить" onclick="Core.POST({id:{ID},send:'delete'},'/Удалить мир/','worldstatus','world{ID}')"></div><div class="right editb" title="Редактировать" onclick="Core.Show('#edit{ID}');Core.Show('#world{ID}');Core.Show('#editb{ID}');Core.Show('#editn{ID}');"></div></td> 
 </tr>

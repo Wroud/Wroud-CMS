@@ -133,7 +133,8 @@ class LS {
             $color = "orange";
         elseif (SCL_DATABASE::$FULL_queryTime <= 0.5)
             $color = "green";
-        $this->AddMessage("<strong style='color:$color'>Общее время выполнения SQL запросов: </strong>" . SCL_DATABASE::$FULL_queryTime . "<br/><strong style='color:$color'>Всего запросов: </strong>" . SCL_DATABASE::$SQLS . "<br/><strong style='color:$color'>В среднем времени на</strong> 1<strong style='color:$color'> запрос: </strong>" . (SCL_DATABASE::$FULL_queryTime / SCL_DATABASE::$SQLS) . "<br/>", null, 0, true);
+        $this->AddMessage("<strong style='color:$color'>Общее время выполнения SQL запросов: </strong>" . SCL_DATABASE::$FULL_queryTime . "<br/><strong style='color:$color'>Всего запросов: </strong>" . SCL_DATABASE::$SQLS . "<br/><strong style='color:$color'>В среднем времени на</strong> 1<strong style='color:$color'> запрос: </strong>" . (SCL_DATABASE::$FULL_queryTime / SCL_DATABASE::$SQLS) . "<br/>");
+        $this->AddMessage('Время генерации страницы: <strong style="color:blue">' . round(microtime(true) - Core::$microtime, 4)."</strong>");
         $this->AddMessage('Конец логирования');
         if ((LOGLEVEL || $this->WasErrors) && $OutputToFile)
             $this->OutputToFile();

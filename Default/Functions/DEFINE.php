@@ -23,8 +23,8 @@ define('SQL_SET_USER_ACCOUNT', "UPDATE `BD_S`.`users` SET `accounts`='%s' WHERE 
 define('SQL_GET_ACCOUNT', "SELECT * FROM `%s`.`account` WHERE `username`='%s'");
 define('SQL_GET_USER_GROUP', "SELECT * FROM `BD_S`.`users_group`");
 define('SQL_GET_USER', "SELECT `password`,`email`,`username` FROM `BD_S`.`users` WHERE `username`='%s'");
-define('SQL_SET_WORLD', "UPDATE `BD_S`.`realms` SET `title` ='%s',`limit`='%s',`ip`='%s',`port`='%s',`auth`='%s',`characters`='%s',`world`='%s' WHERE `id`='%s'");
-define('SQL_ADD_WORLD', "INSERT INTO `BD_S`.`realms` (`title`,`limit`,`ip`,`port`,`auth`,`characters`,`world`) VALUES ('%s','%s','%s','%s','%s','%s','%s')");
-define('SQL_GET_WORLD', "SELECT `id` FROM `BD_S`.`realms` WHERE `title` ='%s' AND `limit`='%s' AND `ip`='%s' AND `port`='%s' AND `auth`='%s' AND `characters`='%s' AND `world`='%s'");
+define('SQL_SET_WORLD', "UPDATE `BD_S`.`realms` SET `title` ='%s',`limit`='%s',`ip`='%s',`port`='%s',`auth`='%s',`characters`='%s',`world`='%s',`bhost`='%s',`bport`='%s',`buser`='%s',`bpass`='%s' WHERE `id`='%s'");
+define('SQL_ADD_WORLD', "INSERT INTO `BD_S`.`realms` (`title`,`limit`,`ip`,`port`,`auth`,`characters`,`world`,`bhost`,`bport`,`buser`,`bpass`) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')");
+define('SQL_GET_WORLD', "SELECT `id` FROM `BD_S`.`realms` WHERE `title` ='%s' AND `limit`='%s' AND `ip`='%s' AND `port`='%s' AND `auth`='%s' AND `characters`='%s' AND `world`='%s' AND `bhost`='%s' AND `bport`='%s' AND `buser`='%s' AND `bpass`='%s'");
 define('SQL_DEL_WORLD', "DELETE FROM `BD_S`.`realms` WHERE `id`='%s'");
 ?>

@@ -11,8 +11,9 @@ class Page {
         if (!is_array(TPL_INDEX::$realms))
             return '';
         $rea = TPL_INDEX::Realms(TC::$args, 'Статистика');
-        $ponline = SCL_DATABASE::selectRow(SQL_GET_STATUS, $rea[1]);
-        $characters = SCL_DATABASE::selectID(SQL_GET_CHARACTERS, 'guid', $rea[1], $rea[1], $rea[1]);
+        $database = new SCL_MINISQL($rea[1][3]);
+        $ponline = $database->selectRow(SQL_GET_STATUS, $rea[1][1]);
+        $characters = $database->selectID(SQL_GET_CHARACTERS, 'guid', $rea[1][1], $rea[1][1], $rea[1][1]);
         $oll = count($characters);
         $array = array(
             array('nguild', 'guild', null, false)

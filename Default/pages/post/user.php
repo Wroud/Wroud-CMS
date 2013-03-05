@@ -26,9 +26,10 @@ class Post {
                         $realm = $rea['id'];
                 if (!$realm)
                     return json_encode(array(false, TPL_LANGUAGE::$messages[5]));
-                if (!SCL_DATABASE::query(SQL_SET_ACCOUNT, TPL_INDEX::$realms[$realm]['auth'], TPL_INDEX::$USER['username'], sha1(TC::$POST['gamepassword']), TPL_INDEX::$USER['email']))
+                $database = new SCL_MINISQL(array(TPL_INDEX::$realms[$realm]['bhost'], TPL_INDEX::$realms[$realm]['bport'], TPL_INDEX::$realms[$realm]['buser'], TPL_INDEX::$realms[$realm]['bpass']));
+                if (!$database->query(SQL_SET_ACCOUNT, TPL_INDEX::$realms[$realm]['auth'], TPL_INDEX::$USER['username'], sha1(TC::$POST['gamepassword']), TPL_INDEX::$USER['email']))
                     return json_encode(array(false, TPL_LANGUAGE::$messages[8]));
-                $sql = SCL_DATABASE::selectCell(SQL_GET_ACCOUNT, TPL_INDEX::$realms[$realm]['auth'], TPL_INDEX::$USER['username']);
+                $sql = $database->selectCell(SQL_GET_ACCOUNT, TPL_INDEX::$realms[$realm]['auth'], TPL_INDEX::$USER['username']);
                 if ($sql == null)
                     return json_encode(array(false, TPL_LANGUAGE::$messages[8]));
                 if (TPL_INDEX::$USER['accounts'] == null)
@@ -54,7 +55,7 @@ class Post {
                         TPL_INDEX::$USER['accounts'] = implode(' ', $full);
                 }
                 if (SCL_DATABASE::query(SQL_SET_USER_ACCOUNT, TPL_INDEX::$USER['accounts'], TPL_INDEX::$USER['email']))
-                    if (TC::$patch == 'Регистрация')
+                    if (TC::$patch == 'Регистрацияp')
                         return json_encode(array(true, TPL_LANGUAGE::$messages[9]));
                     else
                         return json_encode(array(true, TPL_LANGUAGE::$messages[10]));

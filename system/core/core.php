@@ -31,7 +31,7 @@ class Core {
                 SCL_DATABASE::Init();
 
                 if (self::$settings['version'] < VERSION)
-                    exit("<font style='font-family: Verdana, Arial, Helvetica, sans-serif;font-size: 12px;'>Поддерживаемая версия БД: <strong style='color:green;'>" . VERSION . "</strong><br/> Установленная версия БД: <strong style='color:red;'>" . self::$settings['version'] . "<br/>Обновите БД!   <a href='#' style='color:#0085FF;text-decoration:none'>Обновить</a></font>");
+                    exit("<font style='font-family: Verdana, Arial, Helvetica, sans-serif;font-size: 12px;'>Поддерживаемая версия БД: <strong style='color:green;'>" . VERSION . "</strong><br/> Установленная версия БД: <strong style='color:red;'>" . self::$settings['version'] . "<br/>Обновите БД!   <a href='#' style='color:#0085FF;text-decoration:none'>Обновить(на будущее :D)</a></font>");
 
                 define('LOCALE', self::$settings['locale']);
                 define('We_DIR', DIR . self::$settings['template'] . S);

@@ -29,15 +29,16 @@ class Guild {
         self::$page = (is_numeric(self::$page)) ? self::$page : 0;
 
         $realms = TPL_INDEX::Realms($args, 'Гильдии');
-        $guilds = SCL_DATABASE::select(SQL_GET_GUILDS, $realms[1], PLPAGE * self::$page, PLPAGE);
-        $guildc = SCL_DATABASE::selectCell(SQL_GET_COUNT_GUILDS, $realms[1]);
+        $database = new SCL_MINISQL($realms[1][3]);
+        $guilds = $database->select(SQL_GET_GUILDS, $realms[1][1], PLPAGE * self::$page, PLPAGE);
+        $guildc = $database->selectCell(SQL_GET_COUNT_GUILDS, $realms[1][1]);
 
         foreach ($guilds as $gu) {
             self::$leaders[] = $gu['leaderguid'];
             self::$guids[] = $gu['guildid'];
         }
-        $leaname = SCL_DATABASE::selectID(SQL_GET_LEADER_GUILDS, 'guid', $realms[1], implode(',', self::$leaders));
-        $members = SCL_DATABASE::selectID(SQL_GET_MEMBERS_GUILD, 'guildid', $realms[1], implode(',', self::$guids));
+        $leaname = $database->selectID(SQL_GET_LEADER_GUILDS, 'guid', $realms[1][1], implode(',', self::$leaders));
+        $members = $database->selectID(SQL_GET_MEMBERS_GUILD, 'guildid', $realms[1][1], implode(',', self::$guids));
 
         self::$tpl = new TC('pages/guilds');
         $guil = self::$tpl->get(array('guild' => 'GUILD'));

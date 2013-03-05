@@ -40,10 +40,11 @@ class Page {
             $tname = $tops['Время в игре'][2];
         }
 
-        $ponline = SCL_DATABASE::select(SQL_GET_CHARACTERS, $realms[1], $realms[1], $realms[1]);
+        $database = new SCL_MINISQL($realms[1][3]);
+        $ponline = $database->select(SQL_GET_CHARACTERS, $realms[1][1], $realms[1][1], $realms[1][1]);
         $ponline = count($ponline);
         $page = ($page > floor($ponline / PLPAGE)) ? floor($ponline / PLPAGE) : $page;
-        $players = SCL_DATABASE::select(SQL_GET_TOP, $realms[1], $realms[1], $realms[1], $column, PLPAGE * $page, PLPAGE);
+        $players = $database->select(SQL_GET_TOP, $realms[1][1], $realms[1][1], $realms[1][1], $column, PLPAGE * $page, PLPAGE);
         $top = new TC('pages/top');
         $temp = $top->get(array('player' => 'PLAYER'));
         $temp = $temp['player'];

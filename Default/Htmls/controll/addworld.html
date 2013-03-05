@@ -5,7 +5,6 @@
                 <td>Название</td> 
                 <td class="mini">Макс.</td> 
                 <td>Адрес</td>
-                <td class="mini">Порт</td> 
                 <td>БД аккаунтов</td> 
                 <td>БД персонажей</td>
                 <td>БД мира</td>
@@ -15,22 +14,31 @@
             <tr class="player" id ="world{ID}">
                 <td>{NAME}</td> 
                 <td class="mini">{MAX}</td> 
-                <td>{IP}</td> 
-                <td class="mini">{PORT}</td> 
+                <td>{IP}:{PORT}</td>  
                 <td>{AUTH}</td>
                 <td>{CHAR}</td>
                 <td>{WORLD}</td> 
-                <td><div class="right delete" title="Удалить" onclick="Core.POST({id:{ID},send:'delete'},'/Удалить мир/','worldstatus','world{ID}')"></div><div class="right editb" title="Редактировать" onclick="Core.Show('#edit{ID}');Core.Show('#world{ID}')"></div></td> 
+                <td><div class="right delete" title="Удалить" onclick="Core.POST({id:{ID},send:'delete'},'/Удалить мир/','worldstatus','world{ID}')"></div><div class="right editb" title="Редактировать" onclick="Core.Show('#edit{ID}');Core.Show('#editb{ID}');Core.Show('#editn{ID}');Core.Show('#world{ID}')"></div></td> 
             </tr>
             <tr class="worlds" id ="edit{ID}" style="display: none;">
                 <td><input id="name{ID}" value="{NAME}" style="width:80px;"></td> 
                 <td class="mini"><input type="integer" id="limit{ID}"value="{MAX}" style="width:40px;"></td> 
-                <td><input id="ip{ID}" value="{IP}" style="width:80px;"></td> 
-                <td class="mini"><input type="integer" id="port{ID}" value="{PORT}" style="width:40px;"></td> 
+                <td><input id="ip{ID}" value="{IP}:{PORT}" style="width:100px;"></td> 
                 <td><input id="auth{ID}" value="{AUTH}" style="width:70px;"></td>
                 <td><input id="char{ID}" value="{CHAR}" style="width:80px;"></td>
                 <td><input id="pworld{ID}" value="{WORLD}" style="width:70px;"></td> 
-                <td><div class="right okay" title="Редактировать" onclick="Core.POST({id:{ID},name:$.trim($('#name{ID}').val()),limit:$.trim($('#limit{ID}').val()),ip:$.trim($('#ip{ID}').val()),port:$.trim($('#port{ID}').val()),auth:$.trim($('#auth{ID}').val()),characters:$.trim($('#char{ID}').val()),world:$.trim($('#pworld{ID}').val()),send:'edit'},'/Редактировать мир/','worldstatus','world{ID}');Core.Show('#edit{ID}');Core.Show('#world{ID}')"></div></td> 
+                <td></td> 
+            </tr>
+            <tr class="player" id ="editn{ID}" style="background-color: rgba(0, 0, 0, 0.02);display: none;">
+                <td>Адрес бд</td> 
+                <td>Юзер</td> 
+                <td>Пароль</td> 
+            </tr>
+            <tr class="worlds" id ="editb{ID}" style="display: none;">
+                <td><input id="bhost{ID}" value="{BHOST}:{BPORT}" style="width:80px;"></td> 
+                <td><input id="buser{ID}" value="{BUSER}" style="width:40px;"></td>
+                <td><input id="bpass{ID}" value="{BPASS}" style="width:100px;"></td>
+                <td><div class="right okay" title="Редактировать" onclick="Core.POST({id:{ID},name:$.trim($('#name{ID}').val()),limit:$.trim($('#limit{ID}').val()),ip:$.trim($('#ip{ID}').val()),auth:$.trim($('#auth{ID}').val()),characters:$.trim($('#char{ID}').val()),world:$.trim($('#pworld{ID}').val()),bhost:$.trim($('#bhost{ID}').val()),buser:$.trim($('#buser{ID}').val()),bpass:$.trim($('#bpass{ID}').val()),send:'edit'},'/Редактировать мир/','worldstatus','world{ID}');Core.Show('#edit{ID}');Core.Show('#editb{ID}');Core.Show('#editn{ID}');Core.Show('#world{ID}')"></div></td> 
             </tr>
             [/WORLD]
             <tr class="worlds" id ="new" style="display: none;"></tr>
@@ -40,12 +48,22 @@
             <tr class="worlds" id ="add">
                 <td><input id="name" style="width:80px;" placeholder="Название"></td> 
                 <td><input type="integer" id="limit" style="width:40px;" placeholder="Макс."></td> 
-                <td><input id="ip" style="width:80px;" placeholder="Адрес"></td> 
-                <td><input type="integer" id="port" style="width:40px;" placeholder="Порт"></td> 
+                <td><input id="ip" style="width:100px;" placeholder="Адрес"></td> 
                 <td><input id="auth" value="auth" style="width:70px;"></td>
                 <td><input id="char" value="characters" style="width:80px;"></td>
                 <td><input id="pworld" value="world" style="width:70px;"></td> 
-                <td><div class="right okay" title="Добавить" onclick="Core.POST({name:$.trim($('#name').val()),limit:$.trim($('#limit').val()),ip:$.trim($('#ip').val()),port:$.trim($('#port').val()),auth:$.trim($('#auth').val()),characters:$.trim($('#char').val()),world:$.trim($('#pworld').val()),send:'add'},'/Добавить мир/','worldstatus','new');"></div></td> 
+                <td></td> 
+            </tr>
+            <tr class="player" style="background-color: rgba(0, 0, 0, 0.02);">
+                <td>Адрес бд</td> 
+                <td>Юзер</td> 
+                <td>Пароль</td> 
+            </tr>
+            <tr class="worlds">
+                <td><input id="bhost" value="127.0.0.1:3306" style="width:80px;"></td> 
+                <td><input id="buser" value="root" style="width:40px;"></td>
+                <td><input id="bpass" value="root" style="width:100px;"></td>
+                <td><div class="right okay" title="Добавить" onclick="Core.POST({name:$.trim($('#name').val()),limit:$.trim($('#limit').val()),ip:$.trim($('#ip').val()),auth:$.trim($('#auth').val()),characters:$.trim($('#char').val()),world:$.trim($('#pworld').val()),bhost:$.trim($('#bhost').val()),buser:$.trim($('#buser').val()),bpass:$.trim($('#bpass').val()),send:'add'},'/Добавить мир/','worldstatus','new');"></div></td> 
             </tr>
         </tbody>
     </table>

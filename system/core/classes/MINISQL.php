@@ -1,39 +1,31 @@
 <?php
 
-define('SINGLE_CELL', 0x01);
-define('SINGLE_ROW', 0x02);
-define('MULTIPLY_ROW', 0x03);
-define('SQL_QUERY', 0x04);
-define('OBJECT_QUERY', 0x05);
-define('SQL_RAW_QUERY', 0x06);
-define('MULTIPLY_ID', 0x08);
+class SCL_MINISQL {
 
-class SCL_DATABASE {
+    private $connect;
+    private $host;
+    private $port;
+    private $user;
+    private $pass;
 
-    public static $connect;
-    public static $FULL_queryTime = 0;
-    public static $SQLS = 0;
-
-    static function Init() {
-        SCL_DATABASE::Con();
-        SCL_DATABASE::DB_Repair();
-        SCL_DATABASE::L_Sett();
+    function SCL_MINISQL($array) {
+        $this->host = $array[0];
+        $this->port = $array[1];
+        $this->user = $array[2];
+        $this->pass = $array[3];
     }
 
-    private static function L_Sett() {
-        Core::$settings = SCL_DATABASE::selectRow(SQL_LOAD_SETTINGS);
+    private function Con() {
+        $this->connect = new mysqli($this->host . ':' . $this->port, $this->user, $this->pass);
+        if ($this->connect->connect_errno)
+            return false;
+        $this->connect->query("set character_set_client='" . BB_E . "'");
+        $this->connect->query("set character_set_results='" . BB_E . "'");
+        $this->connect->query("set collation_connection='" . BB_E . "_general_ci'");
+        return true;
     }
 
-    private static function Con() {
-        self::$connect = new mysqli(DB_H . ':' . DB_P, DB_U, DB_Pa);
-        if (self::$connect->connect_errno)
-            exit("Не удалось соединиться с бд!</br>");
-        self::$connect->query("set character_set_client='" . BB_E . "'");
-        self::$connect->query("set character_set_results='" . BB_E . "'");
-        self::$connect->query("set collation_connection='" . BB_E . "_general_ci'");
-    }
-
-    private static function Convert_query($funcArgs, $numArgs, $query_type, $sort = '') {
+    private function Convert_query($funcArgs, $numArgs, $query_type, $sort = '') {
         $make_array = array();
         $result = false;
         $query_start = microtime(true);
@@ -51,9 +43,11 @@ class SCL_DATABASE {
         $safe_sql = call_user_func_array('sprintf', $funcArgs);
         $safe_sql = str_replace(array('BD_S'), array(BD_S), $safe_sql);
 
-        $query = self::$connect->query($safe_sql);
+        if (!$this->Con())
+            return false;
+        $query = $this->connect->query($safe_sql);
         if (!$query) {
-            Core::$Debug->AddMessage("SQL: " . $safe_sql, self::$connect->error, 3);
+            Core::$Debug->AddMessage("SQL: " . $safe_sql, $this->connect->error, 3);
             return false;
         }
         switch ($query_type) {
@@ -121,87 +115,67 @@ class SCL_DATABASE {
         }
         $query_end = microtime(true);
         $queryTime = round($query_end - $query_start, 4);
-        self::$FULL_queryTime += $queryTime;
-        self::$SQLS++;
-        Core::$Debug->AddMessage("SQL", sprintf('[%s мс]: %s', $queryTime, $safe_sql), 1);
+        SCL_DATABASE::$FULL_queryTime += $queryTime;
+        SCL_DATABASE::$SQLS++;
+        Core::$Debug->AddMessage("SQL::" . $this->host . ":" . $this->port, sprintf('[%s мс]: %s', $queryTime, $safe_sql), 1);
+        $this->connect->close();
         return $result;
     }
 
-    public static function selectAss($query) {
+    function selectAss($query) {
         $funcArgs = func_get_args();
         $numArgs = func_num_args();
         return self::Convert_query($funcArgs, $numArgs, 7);
     }
 
-    public static function selectCell($query) {
+    function selectCell($query) {
         $funcArgs = func_get_args();
         $numArgs = func_num_args();
         return self::Convert_query($funcArgs, $numArgs, SINGLE_CELL);
     }
 
-    public static function selectRow($query) {
+    function selectRow($query) {
         $funcArgs = func_get_args();
         $numArgs = func_num_args();
         return self::Convert_query($funcArgs, $numArgs, SINGLE_ROW);
     }
 
-    public static function select($query) {
+    function select($query) {
         $funcArgs = func_get_args();
         $numArgs = func_num_args();
         return self::Convert_query($funcArgs, $numArgs, MULTIPLY_ROW);
     }
 
-    public static function selectID($query) {
+    function selectID($query) {
         $funcArgs = func_get_args();
         $numArgs = func_num_args();
         return self::Convert_query($funcArgs, $numArgs, MULTIPLY_ID, $funcArgs[1]);
     }
 
-    public static function query($query) {
+    function query($query) {
         $funcArgs = func_get_args();
         $numArgs = func_num_args();
         return self::Convert_query($funcArgs, $numArgs, SQL_QUERY);
     }
 
-    public static function RawQuery($query) {
+    function RawQuery($query) {
         $funcArgs = func_get_args();
         $numArgs = func_num_args();
         return self::Convert_query($funcArgs, $numArgs, SQL_RAW_QUERY);
     }
 
-    public static function selectObject($query) {
+    function selectObject($query) {
         $funcArgs = func_get_args();
         $numArgs = func_num_args();
         return self::Convert_query($funcArgs, $numArgs, OBJECT_QUERY);
     }
 
-    public static function SQL_Set_Db($DB) {
-        self::$connect->select_db($DB);
+    function SQL_Set_Db($DB) {
+        $this->connect->select_db($DB);
     }
 
-    public static function escape($s) {
-        return self::$connect->escape_string($s);
-    }
-
-    private static function DB_Repair() {
-        $t_list = self::selectAss(SQL_SHOW_TABLES);
-        foreach (glob(Sq_DIR . "*.sql") as $file)
-            $F_list[] = basename($file, ".sql");
-        if (is_array($t_list))
-            $F_list = array_diff($F_list, $t_list);
-
-        self::SQL_Set_Db(BD_S);
-        foreach ($F_list as $name) {
-            if ($name == 'new')
-                continue;
-            if (!file_exists(Sq_DIR . $name . ".sql"))
-                die('<strong>Ошибка:</strong> файл не найден ' . $classFileName . '!<br/> <strong>173:DATABASE.php</strong>');
-            $queries = file(Sq_DIR . $name . ".sql");
-            $queries = implode("", $queries);
-            $queries = explode(";", $queries);
-            foreach ($queries as $q)
-                self::query($q);
-        }
+    function escape($s) {
+        return $this->connect->escape_string($s);
     }
 
 }

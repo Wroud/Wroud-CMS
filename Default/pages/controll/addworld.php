@@ -31,6 +31,10 @@ class Page {
                     , '{CHAR}' => $world['characters']
                     , '{WORLD}' => $world['world']
                     , '{DESCR}' => $world['discription']
+                    , '{BHOST}' => $world['bhost']
+                    , '{BPORT}' => $world['bport']
+                    , '{BUSER}' => $world['buser']
+                    , '{BPASS}' => $world['bpass']
                 ));
                 $HTML .= $worl->render();
             }

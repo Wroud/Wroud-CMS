@@ -10,8 +10,9 @@ class Page {
         $PLHL = "";
         $rea = TPL_INDEX::Realms(TC::$args, 'Онлайн');
 
-        $players = SCL_DATABASE::select(SQL_GET_ONLINE, $rea[1], $rea[1], $rea[1], PLPAGE * $page, PLPAGE);
-        $ponline = SCL_DATABASE::selectRow(SQL_GET_STATUS, $rea[1]);
+        $database = new SCL_MINISQL($rea[1][3]);
+        $players = $database->select(SQL_GET_ONLINE, $rea[1][1], $rea[1][1], $rea[1][1], PLPAGE * $page, PLPAGE);
+        $ponline = $database->selectRow(SQL_GET_STATUS, $rea[1][1]);
         $online = new TC('pages/online');
         $temp = $online->get(array('player' => 'PLAYER'));
         $temp = $temp['player'];

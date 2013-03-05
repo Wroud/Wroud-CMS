@@ -11,12 +11,16 @@
  * @author Алексей
  */
 class Xml {
-    public static function Init(){
+
+    public static function Init() {
         $HTML = "";
         if (is_array(TPL_INDEX::$realms))
             foreach (TPL_INDEX::$realms as $realm) {
                 $stat = "off";
-                $online = SCL_DATABASE::selectRow(SQL_GET_STATUS, $realm['characters']);
+                $database = new SCL_MINISQL(array($realm['bhost'], $realm['bport'], $realm['buser'], $realm['bpass']));
+                $online = $database->selectRow(SQL_GET_STATUS, $realm['characters']);
+                if(!$online)
+                    continue;
                 if (@fsockopen($realm['ip'], $realm['port'])) {
                     $stat = "on";
                 }
@@ -31,6 +35,7 @@ class Xml {
             }
         return $HTML;
     }
+
 }
 
 ?>
